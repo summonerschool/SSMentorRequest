@@ -4,6 +4,7 @@ import axios from "axios";
 import { Button, Select, Stack, Textarea, TextInput } from "@mantine/core";
 import { isNotEmpty, useForm } from "@mantine/form";
 import { RiotIdChecker } from "./RequestForm";
+import { RiotIdCheckerField } from "./FormComponents";
 
 const MentorApplicationForm = ({ setSent }) => {
   const { isValid, values, getInputProps, setValues, setErrors, errors } =
@@ -50,25 +51,13 @@ const MentorApplicationForm = ({ setSent }) => {
     <form onSubmit={handleSubmit}>
       <Stack>
         <Select label="Region" data={regions} {...getInputProps("region")} />
-        <TextInput
-          label="Riot ID"
-          placeholder="Only put your main account"
-          description={
-            values.summonerName &&
-            !values.rank &&
-            "Check if your account is valid with button on the right"
-          }
-          rightSection={
-            <RiotIdChecker
-              values={values}
-              error={errors.summonerName}
-              setValues={setValues}
-              setErrors={setErrors}
-              isApply={true}
-            />
-          }
-          disabled={!values.region}
-          {...getInputProps("summonerName")}
+        <RiotIdCheckerField
+          isApply={true}
+          values={values}
+          errors={errors}
+          setValues={setValues}
+          setErrors={setErrors}
+          getInputProps={getInputProps}
         />
         {mentorFormQuestions.map((question, i) => (
           <Textarea
