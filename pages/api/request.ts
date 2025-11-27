@@ -8,7 +8,7 @@ import { checkRiotAccount } from "../../util/dbaccess/riotMethods";
 export default async function Request(req, res) {
   const token = await getToken({ req });
   if (!token) {
-    res.status(403).send({ error: "what" });
+    res.status(401).send({ error: "what" });
     return;
   }
 
@@ -39,6 +39,7 @@ export default async function Request(req, res) {
         res.status(404);
     }
   } catch (error) {
-    res.status(401).send(error);
+    console.log(error);
+    res.status(400).send(error);
   }
 }

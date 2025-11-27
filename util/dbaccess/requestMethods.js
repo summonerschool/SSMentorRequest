@@ -116,7 +116,9 @@ export async function isRequestPending(id) {
     ],
   }).sort({ createdAt: -1 });
 
-  return request.status;
+  return request
+    ? { status: request.status, completedAt: request.completed }
+    : null;
 }
 
 export async function changeRequest({ body, user }) {

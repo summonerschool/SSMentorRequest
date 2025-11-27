@@ -1,6 +1,6 @@
 import { Text, Button, Space, Checkbox } from "@mantine/core";
 import React, { useState } from "react";
-import TermsText from "./TermsText.mdx";
+import TermsText from "./md/TermsText.mdx";
 
 export default function Terms({ setTerms }) {
   const [isChecked, setIsChecked] = useState(false);
@@ -26,30 +26,6 @@ export default function Terms({ setTerms }) {
     </>
   );
 }
-
-export function Pending() {
-  return (
-    <Text>
-      <p>
-        Request has been sent! Our mentors will reach out to you soon, so please
-        make sure to have your DMs open for our mentors to reach you!
-      </p>
-
-      <p>
-        If you have recently finished a review and would like to send another,
-        please note that there is a limit of 1 request per month. Please note
-        that if we were not able to reach you for your previous request, you
-        will be able to send your next request after 3 months.
-      </p>
-    </Text>
-  );
-}
-
-export function Completed() {
-  return <Text></Text>;
-}
-
-export function Problem() {}
 
 export function Closed() {
   return (

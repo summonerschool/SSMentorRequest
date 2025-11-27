@@ -30,7 +30,6 @@ export const checkRiotAccount = async ({ riotId, region }) => {
       { headers: { "X-Riot-Token": process.env.RIOT_ACCESS_TOKEN } }
     )
     .then(({ data }) => {
-      console.log(data);
       return data.find((queue) => queue.queueType == "RANKED_SOLO_5x5");
     })
     .catch((error) => console.log("ERROR AT GET DATA", error));
