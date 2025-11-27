@@ -13,8 +13,13 @@ export default function Page() {
 
   let page = <Terms setTerms={setTerms} />;
 
-  if (pending || sent) page = <Pending />;
-  else if (terms) page = <RequestForm setSent={setSent} />;
+  if (pending == "Not Accepted" || pending == "In-Progress" || sent)
+    page = <Pending />;
+  else if (pending == "Completed") {
+    <Completed />;
+  } else if (pending == "Problem") {
+    <Problem />;
+  } else if (terms) page = <RequestForm setSent={setSent} />;
 
   return (
     <Layout loading={loading} notAuth={notAuth}>

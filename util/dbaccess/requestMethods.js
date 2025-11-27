@@ -116,7 +116,7 @@ export async function isRequestPending(id) {
     ],
   }).sort({ createdAt: -1 });
 
-  return request ? true : false;
+  return request.status;
 }
 
 export async function changeRequest({ body, user }) {
