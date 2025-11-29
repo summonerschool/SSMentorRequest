@@ -24,21 +24,26 @@ export default function App({ Component, pageProps }) {
   };
 
   return (
-    <ColorSchemeProvider
-      colorScheme={colorScheme}
-      toggleColorScheme={toggleColorScheme}
-    >
-      <MantineProvider
-        withNormalizeCSS
-        withGlobalStyles
-        // emotionCache={myCache}
-        theme={{ colorScheme }}
+    <>
+      {/* Google Fonts */}
+      <link
+        href="https://fonts.googleapis.com/css2?family=PP+Agrandir:wght@400;600;700&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet"
+      />
+      <ColorSchemeProvider
+        colorScheme={colorScheme}
+        toggleColorScheme={toggleColorScheme}
       >
-        <SessionProvider refetchInterval={5 * 60} session={pageProps.session}>
-          <Component {...pageProps} />
-        </SessionProvider>
-      </MantineProvider>
-    </ColorSchemeProvider>
+        <MantineProvider
+          withNormalizeCSS
+          withGlobalStyles
+          theme={{ colorScheme }}
+        >
+          <SessionProvider refetchInterval={5 * 60} session={pageProps.session}>
+            <Component {...pageProps} />
+          </SessionProvider>
+        </MantineProvider>
+      </ColorSchemeProvider>
+    </>
   );
 }
-
