@@ -5863,7 +5863,6 @@ __metadata:
     react: ^18.2.0
     react-dom: ^18.2.0
     react-is: ^18.2.0
-    tabler-icons-react: ^1.56.0
     typescript: ^4.3.5
   languageName: unknown
   linkType: soft
@@ -6092,15 +6091,6 @@ __metadata:
   version: 6.1.1
   resolution: "tabbable@npm:6.1.1"
   checksum: 348639497262241ce8e0ccb0664ea582a386183107299ee8f27cf7b56bc84f36e09eaf667d3cb4201e789634012a91f7129bcbd49760abe874fbace35b4cf429
-  languageName: node
-  linkType: hard
-
-"tabler-icons-react@npm:^1.56.0":
-  version: 1.56.0
-  resolution: "tabler-icons-react@npm:1.56.0"
-  peerDependencies:
-    react: ">= 16.8.0"
-  checksum: 0b058055826fe478afa5c72641bb5207b6332b177d6ed7f505ebaad632cf33a63f0a3bf87af103af2b65bb0fc7b76f056ef03328fea7fa0c7378e30a82c3212b
   languageName: node
   linkType: hard
 
