@@ -1,8 +1,12 @@
 /* Set min-height to avoid page reflow while session loading */
 .signedInStatus {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; 
+  gap: 12px; 
   min-height: 4rem;
   width: 100%;
+  position: relative;
 }
 
 .loading,
@@ -54,7 +58,7 @@
 
 .button,
 .buttonPrimary {
-  float: right;
+  float: none;
   margin-right: -0.4rem;
   font-weight: 500;
   border-radius: 0.3rem;
@@ -89,4 +93,21 @@
 .navItem {
   display: inline-block;
   margin-right: 1rem;
+}
+
+.themeToggle {
+  position: static;      
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  z-index: 10;
+}
+
+.themeToggle:hover {
+  opacity: 0.7;
 }
