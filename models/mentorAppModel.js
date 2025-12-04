@@ -85,6 +85,9 @@ const MentorAppSchema = mongoose.Schema(
     dateTrialStarted: {
       type: Date,
     },
+    dateTrialEnded: {
+      type: Date,
+    },
   },
   {
     timestamps: true,

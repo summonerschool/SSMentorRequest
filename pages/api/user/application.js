@@ -11,9 +11,7 @@ const userApplication = async (req, res) => {
   try {
     switch (req.method) {
       case "GET": {
-        const pending = await checkAppStatus(token.sub);
-
-        message = pending;
+        message = { appStatus: await checkAppStatus(token.sub) };
         break;
       }
       case "POST": {
@@ -27,7 +25,7 @@ const userApplication = async (req, res) => {
         break;
       }
     }
-    res.status(200).send(message);
+    res.status(200).json(message);
   } catch (error) {
     res.status(401).send({ error });
   }

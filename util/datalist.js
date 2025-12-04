@@ -45,7 +45,7 @@ export const regions = [
   "SG",
   "VN",
   "CN",
-  "ME"
+  "ME",
 ];
 
 export const regionsCode = [

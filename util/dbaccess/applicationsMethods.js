@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import MentorApp from "../../models/mentorAppModel";
 import Request from "../../models/requestModel";
 import Users from "../../models/userModel";
@@ -15,18 +16,17 @@ mongoose.set("strictQuery", false);
 dbConnect();
 
 export async function checkAppStatus(id) {
-  const appStatus = MentorApp.findOne({ discordId: id });
+  const application = checkPendingApp(id);
   const mentor = await Users.findOne({ discordId: id });
-  if (mentor?.isMentor) return { isMentor: true };
-  if (await appStatus) {
-    if (appStatus.processed) return { isDenied: true };
-    return { isPending: true };
-  }
-  return {};
+  if (mentor?.isMentor) return "accepted";
+  else return (await application).appStatus;
 }
 
 export async function checkPendingApp(id) {
-  return (await MentorApp.findOne({ discordId: id })) && true;
+  return MentorApp.findOne({
+    discordId: id,
+    dateTrialEnded: { $exists: true, $gte: dayjs().subtract(3, "month") },
+  });
 }
 
 export async function createApp(user, details) {
@@ -105,6 +105,7 @@ export async function processApp({ discordId, command, denyReason }) {
       mentor.isMentor = accepted;
       mentor.save();
       app.appStatus = "processed";
+      app.dateTrialEnded = new Date();
       message = accepted ? mentorAcceptText : mentorDenyText(denyReason);
       break;
     }
