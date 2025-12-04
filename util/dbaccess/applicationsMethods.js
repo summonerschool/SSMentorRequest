@@ -87,6 +87,7 @@ export async function processApp({ discordId, command, denyReason }) {
       if (accepted) {
         const mentor = await tryRegisterMentor(app);
         app.userLink = mentor._id;
+        app.dateTrialStarted = new Date();
         app.appStatus = "trial";
         message = trialAcceptText;
         app.yay = [];

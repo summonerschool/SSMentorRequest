@@ -131,6 +131,7 @@ const AppDetails = ({ item, reviewerId }) => {
         setVoteLoading(false);
       });
   };
+  console.log(item.dateTrialStarted);
 
   // const handleDelete = (e) => {
   //   axios.delete("/api/admin/application", { data: item._id }).then().catch();
@@ -158,12 +159,21 @@ const AppDetails = ({ item, reviewerId }) => {
             <StyledLabel>Applied at:</StyledLabel>{" "}
             {dayjs(item.createdAt).format("DD/MMM/YYYY")}
           </Text>
+
           {item.appStatus == "trial" && (
-            <StyledLabel>
-              <Link href={`/admin/mentors/${item.discordId}`}>
-                Requests taken: {item.requestCount}
-              </Link>
-            </StyledLabel>
+            <>
+              <Text>
+                <StyledLabel>Trial started at: </StyledLabel>
+                {item.dateTrialStarted
+                  ? dayjs(item.dateTrialStarted).format("DD/MMM/YYYY")
+                  : ""}
+              </Text>
+              <StyledLabel>
+                <Link href={`/admin/mentors/${item.discordId}`}>
+                  Requests taken: {item.requestCount}
+                </Link>
+              </StyledLabel>
+            </>
           )}
         </Grid.Col>
         <Grid.Col span={4}>
@@ -225,9 +235,9 @@ const ConfirmationModal = ({ item }) => {
   const [denyOpen, setDenyOpen] = useState(false);
   const [denyReason, setDenyReason] = useState("");
   const messages =
-    appStatus == "trial"
-      ? { details: "trial", status: "ending", button: "Finish Trial" }
-      : { details: "mentor", status: "starting", button: "Start Trial" };
+    appStatus == "pending"
+      ? { details: "trial", status: "ending", button: "Start Trial" }
+      : { details: "mentor", status: "starting", button: "Finish Trial" };
 
   const handleConfirmClicked = (actionRequested) => {
     // NOTE: This route is used for both starting a trial and accepting a mentor. See processApp() for more details.

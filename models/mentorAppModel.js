@@ -82,6 +82,9 @@ const MentorAppSchema = mongoose.Schema(
       enum: roles,
       required: true,
     },
+    dateTrialStarted: {
+      type: Date,
+    },
   },
   {
     timestamps: true,
